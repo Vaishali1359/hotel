@@ -6,15 +6,23 @@ import FeedbackSlider from './Compnents/Home/FeedbackSlider'
 import Footer from './Compnents/Navbar/Footer'
 import RoomGallery from './Compnents/Home/RoomGallery'
 import Instaroom from './Compnents/Home/Instaroom'
+import { Route, Routes } from 'react-router-dom'
 const App = () => {
   return (
     <div>
       <Navbar />
-      <Home />
-      <Home2 />
-      <FeedbackSlider />
-      <RoomGallery />
-      <Instaroom />
+      <Routes>
+      <Route path='/' element={
+        <>
+          <Home />
+          <Home2 />
+          <FeedbackSlider />
+          <RoomGallery />
+          <Instaroom />
+        </>
+      }/>
+
+      </Routes>
 
       <Footer />
     </div>
