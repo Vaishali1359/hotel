@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import HERO from "../img/back.png"; // Adjust path
-
+import { Link } from "react-router-dom";
 import {
   FaMapMarkerAlt,
   FaPhoneAlt,
@@ -13,13 +13,14 @@ import {
   FaBars,
   FaTimes,
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
-
+  const navigate =useNavigate()
   // 🔄 Scroll listener
   useEffect(() => {
     const handleScroll = () => {
@@ -75,7 +76,8 @@ const Navbar = () => {
 
           {/* Nav links - hidden on mobile */}
           <nav className="hidden md:flex space-x-7 text-lg font-medium">
-            <a href="#">Home</a>
+          <Link to="/">Home</Link>
+            <Link to="/about">About</Link>
             <a href="#">Accommodation</a>
             <a href="#">Facilities</a>
           </nav>
