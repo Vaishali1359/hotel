@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import HERO from "../img/back.png"; // Adjust path
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";  // useLocation added
 import {
   FaMapMarkerAlt,
   FaPhoneAlt,
@@ -13,36 +13,42 @@ import {
   FaBars,
   FaTimes,
 } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();  // current route path
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
-  const navigate =useNavigate()
-  // 🔄 Scroll listener
+
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50); // You can adjust threshold
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const isHomePage = location.pathname === "/";
+
   return (
     <header
       className={`sticky top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/30 backdrop-blur-sm text-black shadow-md" : "bg-transparent text-white"
+        isScrolled || !isHomePage
+          ? "bg-white/30 backdrop-blur-sm text-black shadow-md"
+          : "bg-black text-white"
       }`}
-      style={{ backgroundImage: !isScrolled ? `url(${HERO})` : "none", backgroundSize: "cover", backgroundPosition: "top" }}
+      style={{
+        backgroundImage: !isScrolled && isHomePage ? `url(${HERO})` : "none",
+        backgroundSize: "cover",
+        backgroundPosition: "top",
+      }}
     >
-      {/* Optional dark overlay when not scrolled */}
-      {!isScrolled && <div className="absolute inset-0 bg-black/40 z-0" />}
+      {!isScrolled && isHomePage && <div className="absolute inset-0 bg-black/40 z-0" />}
 
       <div className="relative z-10">
-        {/* 🔹 Top Navbar */}
+        {/* Top Navbar */}
         <div className="hidden md:flex justify-between items-center px-8 py-2 text-sm">
           <div className="flex items-center space-x-6">
             <span className="flex items-center space-x-1">
@@ -67,7 +73,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* 🔸 Bottom Navbar */}
+        {/* Bottom Navbar */}
         <div className="flex justify-between items-center px-8 py-4">
           {/* Mobile menu toggle button */}
           <div className="md:hidden text-3xl cursor-pointer" onClick={toggleMenu}>
@@ -76,7 +82,7 @@ const Navbar = () => {
 
           {/* Nav links - hidden on mobile */}
           <nav className="hidden md:flex space-x-7 text-lg font-medium">
-          <Link to="/">Home</Link>
+            <Link to="/">Home</Link>
             <Link to="/about">About</Link>
             <a href="#">Accommodation</a>
             <a href="#">Facilities</a>
@@ -89,11 +95,13 @@ const Navbar = () => {
 
           {/* Reservation button - hidden on mobile */}
           <div className="ml-auto hidden md:block">
-            <button className={`border px-6 py-2 rounded transition ${
-              isScrolled
-                ? "border-black text-black hover:bg-black hover:text-white"
-                : "border-white text-white hover:bg-white hover:text-black"
-            }`}>
+            <button
+              className={`border px-6 py-2 rounded transition ${
+                isScrolled || !isHomePage
+                  ? "border-black text-black hover:bg-black hover:text-white"
+                  : "border-white text-white hover:bg-white hover:text-black"
+              }`}
+            >
               RESERVATION
             </button>
           </div>
