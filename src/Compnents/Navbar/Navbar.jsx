@@ -110,9 +110,9 @@ const Navbar = () => {
         {/* Mobile menu links - visible only if toggled */}
         {menuOpen && (
           <nav className="md:hidden px-8 pb-4 flex flex-col space-y-4 bg-black bg-opacity-80 text-white">
-            <a href="#" onClick={() => setMenuOpen(false)}>Home</a>
-            <a href="#" onClick={() => setMenuOpen(false)}>Accommodation</a>
-            <a href="#" onClick={() => setMenuOpen(false)}>Facilities</a>
+            <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+            <Link to="/about" onClick={() => setMenuOpen(false)}>Accommodation</Link>
+            <Link to="/accomandation" onClick={() => setMenuOpen(false)}>Facilities</Link>
             <button
               onClick={() => setMenuOpen(false)}
               className="border border-white text-white px-6 py-2 rounded hover:bg-white hover:text-black transition mt-2"
