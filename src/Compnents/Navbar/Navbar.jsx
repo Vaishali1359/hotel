@@ -84,7 +84,7 @@ const Navbar = () => {
           <nav className="hidden md:flex space-x-7 text-lg font-medium">
             <Link to="/">Home</Link>
             <Link to="/about">About</Link>
-            <a href="#">Accommodation</a>
+            <Link to="/accomandation">Accommodation</Link>
             <a href="#">Facilities</a>
           </nav>
 

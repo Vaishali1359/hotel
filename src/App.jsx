@@ -8,6 +8,7 @@ import RoomGallery from './Compnents/Home/RoomGallery'
 import Instaroom from './Compnents/Home/Instaroom'
 import { Route, Routes } from 'react-router-dom'
 import About from './Compnents/About'
+import AccPage1 from './Compnents/Accommodation/AccPage1'
 const App = () => {
   return (
     <div>
@@ -23,6 +24,7 @@ const App = () => {
         </>
       }/>
       <Route path="/about" element={<About />} />
+      <Route path="/accomandation" element={<AccPage1 />} />
 
       </Routes>
 
