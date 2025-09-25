@@ -85,6 +85,7 @@ const Navbar = () => {
             <Link to="/">Home</Link>
             <Link to="/about">About</Link>
             <Link to="/accomandation">Accommodation</Link>
+            <Link to={"/rooms"}>All Rooms</Link>
             <a href="#">Facilities</a>
           </nav>
 

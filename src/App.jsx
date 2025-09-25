@@ -9,6 +9,8 @@ import Instaroom from './Compnents/Home/Instaroom'
 import { Route, Routes } from 'react-router-dom'
 import About from './Compnents/About'
 import AccPage1 from './Compnents/Accommodation/AccPage1'
+import AdminPanel from './Compnents/DashBoard/AdminPanel'
+import AdminRoomManager from './Compnents/Accommodation/AdminRoomManager'
 const App = () => {
   return (
     <div>
@@ -25,6 +27,8 @@ const App = () => {
       }/>
       <Route path="/about" element={<About />} />
       <Route path="/accomandation" element={<AccPage1 />} />
+      <Route path='/rooms' element={<AdminRoomManager />} />
+      <Route path="/admin" element={<AdminPanel />} />
 
       </Routes>
 
